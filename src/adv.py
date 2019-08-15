@@ -55,6 +55,12 @@ player = Player("Krishan", room["outside"])
 # If the user enters "q", quit the game.
 
 while True:
+    print(player.current_room.title)
+    print(player.current_room.description)
+    user_input = input("Where would you like to go? n, s, e, w? type q to quit.")
+    print(f'input is {user_input}')
+    # break
+    # pass
     #print the current room title, descirption
     #wait for user input
     #parse user input
@@ -73,4 +79,3 @@ while True:
         #move current room
 
     #if incorrect input
-
