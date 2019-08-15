@@ -56,8 +56,6 @@ def input_instructions():
 
 
 def check_input(inp):
-    # print("checking input")
-    # print(f"You said {inp}")
     if inp in input_list:
         move_player(inp)
     else:
@@ -71,29 +69,13 @@ def move_player(inp):
         print(Fore.YELLOW + 'Thanks for playing!')
         quit = True
     else:
-        if inp == "w":
-            if player.current_room.w_to == None:
-                print(Fore.RED + "There is nothing in that direction")
-            else:
-                player.current_room = player.current_room.w_to
-
-        if inp == "e":
-            if player.current_room.e_to == None:
-                print(Fore.RED + "There is nothing in that direction")
-            else:
-                player.current_room = player.current_room.e_to
-
-        if inp == "s":
-            if player.current_room.s_to == None:
-                print(Fore.RED + "There is nothing in that direction")
-            else:
-                player.current_room = player.current_room.s_to
-
-        if inp == "n":
-            if player.current_room.n_to == None:
-                print(Fore.RED + "There is nothing in that direction")
-            else:
-                player.current_room = player.current_room.n_to
+        possible_room = getattr(player.current_room, (f"{inp}_to"))
+        print(possible_room)
+        if possible_room == None:
+            print(Fore.RED + "There is nothing in that direction")
+        else:
+            player.current_room = possible_room
+  
 
 
 #
