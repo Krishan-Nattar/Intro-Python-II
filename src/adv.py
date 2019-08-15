@@ -27,7 +27,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-input_list = ['n', 'e', 's', 'w', 'q']
+
 
 # Link rooms together
 
@@ -43,26 +43,8 @@ room['treasure'].s_to = room['narrow']
 
 player = Player("Krishan", room["outside"])
 
-user_input = ""
 quit = False
 
-
-def input_instructions():
-    global user_input
-    print(Fore.GREEN + player.current_room.where_am_i())
-    user_input = input(Fore.BLUE + 
-        "Where would you like to go? n, s, e, w? type q to quit.")
-    return check_input(user_input)
-
-
-def check_input(inp):
-    if inp in input_list:
-        return player.move_player(inp)
-    else:
-        print(Fore.RED + "Incorrect Input. Please Try Again!")
-
-
-  
 
 
 #
@@ -83,7 +65,7 @@ def check_input(inp):
 # If the user enters "q", quit the game.
 while True:
 
-    quit = input_instructions()
+    quit = player.input_instructions()
 
     if quit == True:
         break
