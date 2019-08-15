@@ -1,10 +1,6 @@
 from room import Room
 from player import Player
-# import sys
-# from termcolor import colored, cprint
-# import math
-# import matplotlib
-from colorama import Fore, Back, Style 
+from colorama import Fore, Back, Style
 
 # Declare all the rooms
 
@@ -28,7 +24,6 @@ earlier adventurers. The only exit is to the south."""),
 }
 
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -42,10 +37,6 @@ room['treasure'].s_to = room['narrow']
 
 
 player = Player("Krishan", room["outside"])
-
-quit = False
-
-
 
 #
 # Main
