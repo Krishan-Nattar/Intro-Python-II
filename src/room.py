@@ -3,6 +3,7 @@
 
 
 class Room:
+
     def __init__(self, title, description):
         self.title=title
         self.description=description
@@ -10,6 +11,9 @@ class Room:
         self.e_to=None
         self.s_to=None
         self.w_to=None
+        
+    def where_am_i(self):
+        return (f"*******************\n{self.title}\n\n{self.description}\n*******************")
 
 
 #add methods to check directions?

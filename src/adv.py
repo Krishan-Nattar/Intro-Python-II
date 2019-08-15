@@ -1,5 +1,10 @@
 from room import Room
 from player import Player
+import sys
+# from termcolor import colored, cprint
+import math
+# import matplotlib
+from colorama import Fore, Back, Style 
 
 # Declare all the rooms
 
@@ -22,6 +27,7 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+input_list = ['n', 'e', 's', 'w', 'q']
 
 # Link rooms together
 
@@ -36,6 +42,59 @@ room['treasure'].s_to = room['narrow']
 
 
 player = Player("Krishan", room["outside"])
+
+user_input = ""
+quit = False
+
+
+def input_instructions():
+    global user_input
+    print(Fore.GREEN + player.current_room.where_am_i())
+    user_input = input(Fore.BLUE + 
+        "Where would you like to go? n, s, e, w? type q to quit.")
+    check_input(user_input)
+
+
+def check_input(inp):
+    # print("checking input")
+    # print(f"You said {inp}")
+    if inp in input_list:
+        move_player(inp)
+    else:
+        print(Fore.RED + "Incorrect Input. Please Try Again!")
+
+
+def move_player(inp):
+    global quit
+    global player
+    if inp == "q":
+        print(Fore.YELLOW + 'Thanks for playing!')
+        quit = True
+    else:
+        if inp == "w":
+            if player.current_room.w_to == None:
+                print(Fore.RED + "There is nothing in that direction")
+            else:
+                player.current_room = player.current_room.w_to
+
+        if inp == "e":
+            if player.current_room.e_to == None:
+                print(Fore.RED + "There is nothing in that direction")
+            else:
+                player.current_room = player.current_room.e_to
+
+        if inp == "s":
+            if player.current_room.s_to == None:
+                print(Fore.RED + "There is nothing in that direction")
+            else:
+                player.current_room = player.current_room.s_to
+
+        if inp == "n":
+            if player.current_room.n_to == None:
+                print(Fore.RED + "There is nothing in that direction")
+            else:
+                player.current_room = player.current_room.n_to
+
 
 #
 # Main
@@ -53,29 +112,9 @@ player = Player("Krishan", room["outside"])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-
 while True:
-    print(player.current_room.title)
-    print(player.current_room.description)
-    user_input = input("Where would you like to go? n, s, e, w? type q to quit.")
-    print(f'input is {user_input}')
-    # break
-    # pass
-    #print the current room title, descirption
-    #wait for user input
-    #parse user input
-    #if input valid, move player and loop
 
+    input_instructions()
 
-
-# while input !=q
-
-
-    #[name] is in [room]
-    #[room description]
-    #Where would you like to go? n,e,s,w  or q=quit
-
-    #if {inputer}_to != None
-        #move current room
-
-    #if incorrect input
+    if quit == True:
+        break
