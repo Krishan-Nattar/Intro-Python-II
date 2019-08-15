@@ -1,8 +1,8 @@
 from room import Room
 from player import Player
-import sys
+# import sys
 # from termcolor import colored, cprint
-import math
+# import math
 # import matplotlib
 from colorama import Fore, Back, Style 
 
@@ -52,29 +52,16 @@ def input_instructions():
     print(Fore.GREEN + player.current_room.where_am_i())
     user_input = input(Fore.BLUE + 
         "Where would you like to go? n, s, e, w? type q to quit.")
-    check_input(user_input)
+    return check_input(user_input)
 
 
 def check_input(inp):
     if inp in input_list:
-        move_player(inp)
+        return player.move_player(inp)
     else:
         print(Fore.RED + "Incorrect Input. Please Try Again!")
 
 
-def move_player(inp):
-    global quit
-    global player
-    if inp == "q":
-        print(Fore.YELLOW + 'Thanks for playing!')
-        quit = True
-    else:
-        possible_room = getattr(player.current_room, (f"{inp}_to"))
-        print(possible_room)
-        if possible_room == None:
-            print(Fore.RED + "There is nothing in that direction")
-        else:
-            player.current_room = possible_room
   
 
 
@@ -96,7 +83,7 @@ def move_player(inp):
 # If the user enters "q", quit the game.
 while True:
 
-    input_instructions()
+    quit = input_instructions()
 
     if quit == True:
         break
