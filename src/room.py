@@ -34,6 +34,3 @@ class Room:
                 print(Fore.LIGHTCYAN_EX + "You spot an item...")
                 for x in self.items:
                     print(Fore.LIGHTCYAN_EX + f"A {x.name}: it appears to be {x.description}")
-                    # print(x.description)
-
-#add methods to check directions?

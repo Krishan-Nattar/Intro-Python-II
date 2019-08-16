@@ -28,6 +28,13 @@ class Player:
 
         else:
             self.current_room = possible_room
+            
+
+            # Tentative win scenario for making it home.            
+            if possible_room.title == "Home":
+                print("You've made your way home! Congrats! You win!!!!")
+                return True
+
             # Assign the room that exists to the current room
     def tester(self):
         print('test')
@@ -45,12 +52,16 @@ class Player:
     def check_input(self, inp):
         text = inp.split(" ")
         move_list = ['n', 'e', 's', 'w', 'q']
-        action_list = ['get', 'drop']
+        action_list = ['get', 'drop', 'take']
+        inv = ['i', 'inventory','list', 'inv']
         if inp in move_list:
             return self.move_player(inp)
+        elif inp in inv:
+            # print("searching inventory...")
+            self.list_inventory()
         elif text[0] in action_list and len(text) > 1:
             # print('actions')
-            if text[0] == 'get':
+            if text[0] == 'get' or text[0] == 'take':
                 self.get_item(text[1])
             else:
                 self.drop_item(text[1])
@@ -58,26 +69,33 @@ class Player:
         else:
             print(Fore.RED + "Incorrect Input. Please Try Again!")
 
+    def list_inventory(self):
+        print("checking inventory...")
+        if len(self.items) > 0:
+            for x in self.items:
+                print(x.name)
+        else:
+            print(Fore.RED + "You are holding nothing")
+
+
     def get_item(self, item):
         # print(self.current_room.items['rock'])
         # if (getattr(self.current_room.items, (f"{item}"))):
         #     pass
         for obj in self.current_room.items:
             if obj.name == item:
-                print(f"Picking up {item}")
+                print(Fore.YELLOW + f"Picking up {item}")
                 self.current_room.items.remove(obj)
                 self.items.append(obj)
                 return
         print("That item is not in this room")
-        # if item in self.current_room.items:
-        #     print(f'getting {item}')
-        # else:
-        #     print("That item is not here")
-        #     print(self.current_room.items)
+
 
     def drop_item(self,item):
         for obj in self.items:
             if obj.name == item:
-                print(f'dropping {item}')
+                print(Fore.YELLOW + f'dropping {item}')
                 self.current_room.items.append(obj)
                 self.items.remove(obj)
+                return
+        print("You are not holding that item")

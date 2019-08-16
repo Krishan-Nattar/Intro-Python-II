@@ -22,6 +22,12 @@ to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
+
+ 'river': Room("Riverfront", """You've come up to the edge of a river. It's too deep to cross. The sound of drums wafts through the air."""),
+
+ 'jungleentrance': Room("Jungle Entrance", """The trees are thick and dark between their trunks. Lush foliage surrounds you."""),
+
+ 'home': Room("Home", """Your childhood home. Your baby pictures adorn the walls."""),
 }
 
 
@@ -35,6 +41,12 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+room['treasure'].n_to = room['river']
+room['river'].s_to = room['treasure']
+room['river'].e_to = room['jungleentrance']
+room['jungleentrance'].w_to = room['river']
+room['jungleentrance'].n_to = room['home']
+room['home'].s_to = room['jungleentrance']
 
 rock = Item("rock", "a small grey stone. Nothing special")
 coin = Item("coin", "a silver dollar. The symbols on it are faded, but you can make out the image of a ship.")
