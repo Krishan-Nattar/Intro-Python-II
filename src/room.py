@@ -1,6 +1,6 @@
 # Implement a class to hold room information. This should have name and
 # description attributes.
-
+from colorama import Fore, Back, Style
 
 class Room:
 
@@ -8,6 +8,7 @@ class Room:
         
         self.title=title
         self.description=description
+        self.items = []
     
 
         self.n_to=None
@@ -17,10 +18,22 @@ class Room:
         
         
     def where_am_i(self):
-        return (f"*******************\n{self.title}\n\n{self.description}\n*******************")
+        print(Fore.GREEN + f"*******************\n{self.title}\n\n\t{self.description}\n*******************")
+        self.list_items()
+        
     
     def list_items(self):
-        return (f"The items here are ....\n{self.items}")
-
+        if self.items ==[]:
+            print(Fore.LIGHTCYAN_EX + f"You don't see any items nearby")
+        else:
+            if len(self.items) > 1:
+                print(Fore.LIGHTCYAN_EX + "You see several items")
+                for x in self.items:
+                    print(Fore.LIGHTCYAN_EX + f"A {x.name}: it appears to be {x.description}")
+            else:
+                print(Fore.LIGHTCYAN_EX + "You spot an item...")
+                for x in self.items:
+                    print(Fore.LIGHTCYAN_EX + f"A {x.name}: it appears to be {x.description}")
+                    # print(x.description)
 
 #add methods to check directions?

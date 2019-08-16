@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 from colorama import Fore, Back, Style
 
 # Declare all the rooms
@@ -35,25 +36,25 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+rock = Item("rock", "a small grey stone. Nothing special")
+coin = Item("coin", "a silver dollar. The symbols on it are faded, but you can make out the image of a ship.")
+key = Item("key", "a rusty key. I wonder what this opens?")
+parchment = Item("parchment", "a piece of paper. The writing on it is in a language you've never seen.")
+banana = Item("banana", "a small yellow fruit. A great source of potassium.")
+
+
+room['foyer'].items.append(rock)
+room['overlook'].items.append(key)
+room['overlook'].items.append(banana)
+room['narrow'].items.append(parchment)
+room['treasure'].items.append(coin)
+
 
 player = Player("Krishan", room["outside"])
 
-#
-# Main
-#
 
-# Make a new player object that is currently in the 'outside' room.
+# Main Controller
 
-# Write a loop that:
-#
-# * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
-# * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
 while True:
 
     quit = player.input_instructions()
