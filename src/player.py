@@ -36,8 +36,8 @@ class Player:
                 return True
 
             # Assign the room that exists to the current room
-    def tester(self):
-        print('test')
+    # def tester(self):
+    #     print('test')
 
     def input_instructions(self):
 
