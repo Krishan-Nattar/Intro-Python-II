@@ -45,7 +45,8 @@ class Player:
         user_input = input(Fore.LIGHTMAGENTA_EX +
                            "What would you like to do?\nTo move type: n,e,s,w\n"
                            +"to pick up an item type 'get <item>'\n"
-                           +"to drop an item type 'drop <item>'"
+                           +"to drop an item type 'drop <item>'\n"
+                           +"Type 'i' to view inventory\n"
                            +"Type 'q' to quit\n")
         return self.check_input(user_input)
 
