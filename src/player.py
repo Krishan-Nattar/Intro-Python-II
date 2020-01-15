@@ -78,14 +78,15 @@ class Player:
         else:
             print(Fore.RED + "You are holding nothing")
 
-
+# switch to on take/ on drop in item.py
     def get_item(self, item):
         # print(self.current_room.items['rock'])
         # if (getattr(self.current_room.items, (f"{item}"))):
         #     pass
         for obj in self.current_room.items:
             if obj.name == item:
-                print(Fore.YELLOW + f"Picking up {item}")
+                # print(Fore.YELLOW + f"Picking up {item}")
+                obj.on_take()
                 self.current_room.items.remove(obj)
                 self.items.append(obj)
                 return
@@ -95,7 +96,8 @@ class Player:
     def drop_item(self,item):
         for obj in self.items:
             if obj.name == item:
-                print(Fore.YELLOW + f'dropping {item}')
+                # print(Fore.YELLOW + f'dropping {item}')
+                obj.on_drop()
                 self.current_room.items.append(obj)
                 self.items.remove(obj)
                 return
