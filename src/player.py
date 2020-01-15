@@ -23,7 +23,6 @@ class Player:
         if possible_room == None:
             print(Fore.RED + "There is nothing in that direction")
             self.input_instructions()
-            # self.tester()
             # No room exists, continue loop
 
         else:
@@ -36,8 +35,6 @@ class Player:
                 return True
 
             # Assign the room that exists to the current room
-    # def tester(self):
-    #     print('test')
 
     def input_instructions(self):
 
@@ -58,10 +55,8 @@ class Player:
         if inp in move_list:
             return self.move_player(inp)
         elif inp in inv:
-            # print("searching inventory...")
             self.list_inventory()
         elif text[0] in action_list and len(text) > 1:
-            # print('actions')
             if text[0] == 'get' or text[0] == 'take':
                 self.get_item(text[1])
             else:
@@ -80,12 +75,8 @@ class Player:
 
 # switch to on take/ on drop in item.py
     def get_item(self, item):
-        # print(self.current_room.items['rock'])
-        # if (getattr(self.current_room.items, (f"{item}"))):
-        #     pass
         for obj in self.current_room.items:
             if obj.name == item:
-                # print(Fore.YELLOW + f"Picking up {item}")
                 obj.on_take()
                 self.current_room.items.remove(obj)
                 self.items.append(obj)
@@ -96,7 +87,6 @@ class Player:
     def drop_item(self,item):
         for obj in self.items:
             if obj.name == item:
-                # print(Fore.YELLOW + f'dropping {item}')
                 obj.on_drop()
                 self.current_room.items.append(obj)
                 self.items.remove(obj)

@@ -30,7 +30,6 @@ earlier adventurers. The only exit is to the south."""),
  'home': Room("Home", """Your childhood home. Your baby pictures adorn the walls."""),
 }
 
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -54,16 +53,13 @@ key = Item("key", "a rusty key. I wonder what this opens?")
 parchment = Item("parchment", "a piece of paper. The writing on it is in a language you've never seen.")
 banana = Item("banana", "a small yellow fruit. A great source of potassium.")
 
-
 room['foyer'].items.append(rock)
 room['overlook'].items.append(key)
 room['overlook'].items.append(banana)
 room['narrow'].items.append(parchment)
 room['treasure'].items.append(coin)
 
-
 player = Player("Krishan", room["outside"])
-
 
 # Main Controller
 
